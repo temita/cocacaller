@@ -23,5 +23,6 @@
 		lambda{@g.shout("","")}.should raise_error
      end
    end
+
  end
 
