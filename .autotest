@@ -1,0 +1,27 @@
+# -*- ruby -*-
+# require 'autotest/autoupdate'
+# require 'autotest/bundler'
+# require 'autotest/isolate'
+# require 'autotest/once'
+# require 'autotest/rcov'
+# require 'autotest/restart'
+# require 'autotest/timestamp'
+  require 'autotest/growl'
+
+# Autotest::AutoUpdate.sleep_time = o
+# Autotest::AutoUpdate.update_cmd = o
+# Autotest::Isolate.dir = o
+# Autotest::RCov.command = o
+# Autotest::RCov.pattern = o
+# Autotest::RCov.options = o
+
+Autotest.add_discovery do
+  "rspec"
+end
+
+Autotest.add_hook :initialize do |at|
+  at.add_mapping(/([\w0-9]+)\.rb$/) do |f, matched|
+    "spec/#{matched[1]}_spec.rb"
+  end
+end
+
